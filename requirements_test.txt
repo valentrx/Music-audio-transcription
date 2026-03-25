@@ -1,0 +1,8 @@
+
+basic-pitch[tf]
+librosa
+spleeter
+noisereduce
+optuna
+optuna-dashboard
+tensorflow == 2.15.0

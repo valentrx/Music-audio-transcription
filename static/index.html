@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio to MIDI/Sheet Music Converter</title>
+    <!-- TailwindCSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <main class="max-w-lg w-full mx-auto p-4">
+        <div class="bg-white p-8 rounded-lg shadow-lg">
+            <div id="animation" class="w-64 h-64 mx-auto mb-6"></div>
+            <!-- Title -->
+            <h1 class="text-3xl font-bold mb-6 gradient-text text-center">Audio to MIDI/Sheet Music Converter</h1>
+
+            <!-- Upload area -->
+            <div id="uploadArea" class="border-2 border-dashed border-gray-300 rounded-lg p-6 mb-6 transition duration-300">
+                <input type="file" id="audioFile" accept="audio/*" class="hidden">
+                <label for="audioFile" class="cursor-pointer flex flex-col items-center">
+                    <i class="fas fa-upload text-4xl text-gray-400 mb-2"></i>
+                    <span class="text-gray-600">Drop your audio file here or click to select</span>
+                    <span id="fileName" class="mt-2 text-green-500"></span>
+                </label>
+            </div>
+            <p class="text-sm text-gray-500 mb-4">Supported formats: MP3, WAV</p>
+
+            <!-- OR Divider -->
+            <div class="text-center text-gray-500">— or —</div>
+            <!-- YouTube URL -->
+            <div>
+              <label class="block font-medium">YouTube Link</label>
+              <input
+                type="text"
+                id="youtubeUrl"
+                name="youtube_url"
+                placeholder="https://youtube.com/watch?v=..."
+                class="mt-1 block w-full border border-gray-300 rounded-md p-2"
+              />
+            </div>
+            <!-- Output format options -->
+            <div class="mb-6">
+                <label class="block text-gray-700 mb-2">Output format:</label>
+                <div class="flex space-x-4">
+                    <label class="flex items-center">
+                        <input type="radio" name="output" value="midi" class="form-radio text-blue-500" checked>
+                        <span class="ml-2 text-gray-600">MIDI</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="output" value="pdf" class="form-radio text-blue-500">
+                        <span class="ml-2 text-gray-600">Score</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="output" value="both" class="form-radio text-blue-500">
+                        <span class="ml-2 text-gray-600">Both</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Convert button -->
+            <button id="convertBtn" class="btn-gradient text-white px-6 py-3 rounded-lg w-full font-semibold flex items-center justify-center space-x-2">
+                <span id="convertText">Convert</span>
+                <div id="convertSpinner" class="hidden animate-spin h-6 w-6 border-4 border-white border-t-transparent rounded-full"></div>
+            </button>
+
+            <!-- Progress section -->
+            <div id="progressSection" class="mt-6 hidden">
+                <div class="mb-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">Processing...</span>
+                        <span id="progressPercent" class="text-sm text-gray-500">0%</span>
+                    </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-3">
+                    <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
+                </div>
+                <p id="progressStep" class="text-sm text-gray-600 text-center">Initializing...</p>
+            </div>
+
+            <!-- Result section -->
+            <div id="result" class="mt-6 hidden">
+                <div id="loading" class="flex justify-center">
+                    <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+                <a id="downloadLink" href="#" class="download-btn text-white px-4 py-2 rounded-lg mt-4 hidden block text-center">Download your file</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- GSAP CDN for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
